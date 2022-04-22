@@ -2,11 +2,6 @@
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-class proccess:
-    def __init__(self ,request=[],holds=[], is_blocked=False):
-        self.request = request
-        self.holds = holds
-        self.is_blocked = is_blocked
 
 def deadlock_detector(instructions):
     #define variables
@@ -24,13 +19,7 @@ def deadlock_detector(instructions):
         process_matrix.append(row)
     matrix_length = len(process_matrix)-1
 
-    for i in range(len(process_matrix[num_processes:])):
-        for k in range(len(process_matrix[i])):
-            for j in range(len(process_matrix)):
-                a = set(process_matrix[i])
-                b = set(process_matrix[j])
-                if(a==b):
-                    continue
+
 
 
     print(process_matrix)
