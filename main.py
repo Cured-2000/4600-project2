@@ -4,8 +4,9 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 def deadlock_detector(instructions):
+
     #define variables
-    # fill process matrix
+    # fill process matrix with ints
     process_matrix = []
     for i in instructions[3:]:
         row = [int(m) for m in i if m.isdigit()]
@@ -17,14 +18,11 @@ def deadlock_detector(instructions):
 
     resource_cap = [int(m)for m in instructions[2] if m.isdigit()]
 
-    #initalize work and finish matrix
-    work_matrix = [0 for col in range(num_resources)]
-    finish_matrix = [False for col in range(num_processes)]
 
     #find currently allocated blocks by process
     allocation_matrix = []
-    for i in range(len(process_matrix[num_processes:])):
-        allocation_matrix.append([row[i]for row in process_matrix[num_resources:]])
+    for i in range(len(process_matrix[num_resources:])):
+        allocation_matrix.append([row[i]for row in process_matrix[num_processes:]])
 
     #find requested resources by process
     request_matrix = []
@@ -32,13 +30,14 @@ def deadlock_detector(instructions):
         request_matrix.append(i[num_resources:])
 
     #find current availability
+    # #initalize work and finish matrix
     total_alloc = [sum(x) for x in zip(*allocation_matrix)]
-    avail_matrix = [x-y for x, y in zip(resource_cap, total_alloc)]
+    work_matrix = [x-y for x, y in zip(resource_cap, total_alloc)]
+    finish_matrix = [False for x in range(num_processes)]
 
     #iterate through matrix and find knots(Needs Work!)
     for i in range(len(request_matrix)):
         if request_matrix[i] <= work_matrix and finish_matrix[i] is False:
-
             work_matrix = [x+y for x, y in zip(allocation_matrix[i], work_matrix)]
             finish_matrix[i] = True
 
@@ -61,7 +60,7 @@ def read_file():
             continue
         else:
            instructions.append(i.rstrip())
-
+    print(instructions)
     deadlock_detector(instructions)
 
 
