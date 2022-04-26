@@ -3,5 +3,5 @@ This program takes a file input of the number of procceses, resources, and adjac
 
 Compilation Instructions:
 
-1. Run python3 on terminal
-2. Use file name
+1. Run python3 to execute file name 4600_proj_2.py
+
