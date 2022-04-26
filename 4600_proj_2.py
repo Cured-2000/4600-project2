@@ -62,7 +62,7 @@ def read_file():
     # define list of instructions
     instructions = []
 
-    s = input("enter a file name to be read or type exit to exit: ")
+    s = input("enter a file name to be read : ")
 
     try:
         f = open("input.txt", "r")
